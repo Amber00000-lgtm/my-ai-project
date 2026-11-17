@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>走讀 DNA 測驗｜你適合哪一種台灣走讀？</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f4;--surface:#fff;--ink:#17233a;--mute:#5d6b80;--line:#d5dde4;--c0:#c8414f;--c1:#8a6a2f;--c2:#2b7a66;--c3:#5a55c8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a2b;--surface:#1a2538;--ink:#eaf0f6;--mute:#9aa8bb;--line:#2c3a52;--c0:#ef7480;--c1:#d3ae6a;--c2:#5fc2a8;--c3:#a09cff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111a2b;--surface:#1a2538;--ink:#eaf0f6;--mute:#9aa8bb;--line:#2c3a52;--c0:#ef7480;--c1:#d3ae6a;--c2:#5fc2a8;--c3:#a09cff;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:28px 20px 48px}
+h1,h2,.serif{font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;font-weight:700;line-height:1.35;margin:0}
+h1{font-size:2rem;margin:18px 0 10px}
+h2{font-size:1.3rem}
+p{margin:0 0 12px}
+.mute{color:var(--mute);font-size:.93rem}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--c3);outline-offset:2px}
+.btn{display:block;width:100%;padding:15px 18px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:700;font-size:1.05rem;text-align:center;text-decoration:none}
+.helix{display:block;margin:0 auto;width:150px;height:auto}
+.strand{display:flex;align-items:center;justify-content:center;gap:0;margin:8px 0 22px}
+.rung{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--surface);flex:none;transition:background .3s,border-color .3s}
+.rung.on{background:var(--ink);border-color:var(--ink)}
+.rung.now{border-color:var(--ink)}
+.link{flex:1;height:2px;background:var(--line);max-width:22px}
+.q-no{color:var(--mute);font-size:.9rem;margin-bottom:6px}
+.opts{display:grid;gap:10px;margin-top:20px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;padding:14px 16px;border:2px solid var(--line);border-radius:12px;background:var(--surface);transition:border-color .15s,transform .15s}
+.opt:hover{border-color:var(--ink)}
+.opt:active{transform:scale(.99)}
+.opt b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:.85rem}
+.opt.picked{border-color:var(--ink)}
+.back{background:none;border:0;color:var(--mute);padding:14px 0 0;font-size:.93rem}
+.hero{text-align:center;padding:26px 16px 22px;border-radius:18px;background:var(--surface);border:2px solid var(--t)}
+.hero .em{font-size:3.4rem;line-height:1}
+.hero h1{margin:10px 0 6px;color:var(--t)}
+.tag{font-size:.9rem;color:var(--mute)}
+.bars{margin:22px 0}
+.bar{display:grid;grid-template-columns:7.5em 1fr 2.2em;gap:10px;align-items:center;font-size:.9rem;margin-bottom:8px}
+.track{height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.fill{height:100%;border-radius:5px;transition:width .6s}
+.tour{display:block;padding:14px 16px;margin-bottom:10px;border-radius:12px;background:var(--surface);border-left:6px solid var(--t);text-decoration:none;color:inherit}
+.tour strong{display:block}
+.tour small{color:var(--mute)}
+.tour .go{font-size:.9rem;color:var(--t);font-weight:700}
+.tip{padding:14px 16px;border-radius:12px;background:var(--surface);border:2px dashed var(--line);margin:18px 0}
+.ghost{background:none;border:2px solid var(--ink);color:var(--ink);margin-top:14px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap" id="app"></main>
+<script>
+var TYPES=[
+{id:0,em:"🍜",name:"街巷味覺 DNA",c:"var(--c0)",tag:"用味蕾認識城市的人",desc:"你相信一座城市的靈魂藏在市場、老店和小吃攤裡。對你來說，一口熟悉的味道，勝過十張打卡照。走讀時你最享受邊走邊吃、聽老闆說店的故事，在滿足的同時也讀懂街巷的生活。",
+ tours:[
+ {n:"IN中正·雙市場老味新趣",u:"ox729eic",d:"2026/12/05 14:00-16:00",l:"2026-12-05"},
+ {n:"IN三重·美食探味散步",u:"c7sfniri",d:"2026/11/21、12/19 09:30-11:30",l:"2026-12-19"},
+ {n:"IN西門·潮中老字號",u:"ijlr1asq",d:"2026/12/12 09:30-11:30",l:"2026-12-12"},
+ {n:"IN大稻埕·建成美食散步",u:"ygah6fjj",d:"2026/09/19 09:30-11:30",l:"2026-09-19"}]},
+{id:1,em:"🏛️",name:"時光探索 DNA",c:"var(--c1)",tag:"愛聽城市故事的人",desc:"你對古蹟、老街和城市變遷特別有感，總想知道「這裡以前是什麼樣子」。比起走馬看花，你更喜歡有人把歷史講得生動，讓腳下的每一塊磚都有來歷。",
+ tours:[
+ {n:"IN艋舺·文化散步",u:"og5omcdg",d:"2026/12/13 14:00-16:00",l:"2026-12-13"},
+ {n:"IN大同·後站商圈的時代探索",u:"7mktoloe",d:"2026/11/28 14:00-16:00",l:"2026-11-28"},
+ {n:"IN台北城·從北門入城趣",u:"ayrybea1",d:"2026/06/20 09:30-11:30",l:"2026-06-20"},
+ {n:"IN南港·走一變黑鄉到潮城",u:"gvjc6owq",d:"2025/12/28 09:30-11:30",l:"2025-12-28"}]},
+{id:2,em:"🌿",name:"在地漫遊 DNA",c:"var(--c2)",tag:"想慢下來親近自然的人",desc:"你需要離開市區，走進山、海與濕地，讓步調慢下來。你不趕景點，喜歡走久一點，在風景裡安靜感受，也願意花半天甚至一整天，把自己交給一條路。",
+ tours:[
+ {n:"「綠遊雙岸」八里淡水低碳走讀",u:"rjixlrpm",d:"2026/11/26 09:00-16:00",l:"2026-11-26"},
+ {n:"IN石碇·慢漫山街",u:"0h2gqvyx",d:"2026/04/26 09:00-12:00",l:"2026-04-26"},
+ {n:"「螢詩作樂」生態漫訪",u:"ukx1jfp5",d:"2026/04/18 17:30-19:30",l:"2026-04-18"},
+ {n:"澳底海村記憶探索",u:"maoayrdy",d:"2026/08/05 09:30-15:00",l:"2026-08-05"}]},
+{id:3,em:"🎨",name:"城市時光 DNA",c:"var(--c3)",tag:"重視氛圍與內心感受的人",desc:"你在意的是質感和心裡的感覺：一杯茶、一間有氣氛的咖啡店、一個讓人安靜下來的角落。走讀對你來說是一段整理心情的時間，結束後能帶走新的想法。",
+ tours:[
+ {n:"IN大稻埕·心漫步",u:"ghp3xj2b",d:"2026/11/28、12/06、12/25 09:30-11:30",l:"2026-12-25"},
+ {n:"IN三芝·生命美學新視角",u:"qwuprd1l",d:"2026/12/06 13:30-16:30",l:"2026-12-06"},
+ {n:"IN大稻埕·訪茶之旅",u:"1d94rgfg",d:"2026/12/12、12/26 09:30-11:30",l:"2026-12-26"},
+ {n:"IN北投·溫市灶咖",u:"htpnr9dc",d:"2026/12/20 09:30-11:30",l:"2026-12-20"}]}
+];
+var QS=[
+{q:"週末早上，你最想怎麼開始？",o:["去傳統市場邊逛邊吃","看一座老建築，聽它的故事","出門吹風，看山看海","找一間有氣氛的咖啡店或茶館坐坐"]},
+{q:"旅行中，什麼最能讓你覺得「值得了」？",o:["吃到一道讓人念念不忘的料理","知道一個地方的過去，原來這麼有故事","走在一片安靜的風景裡","有一個瞬間觸動了心"]},
+{q:"你最喜歡的導覽方式是？",o:["邊走邊試吃，老闆還會說店的故事","導覽員像說書人，把歷史講得生動","少說話，讓我自己感受環境","有體驗或手作，讓我動手參與"]},
+{q:"如果只能帶一樣東西出門？",o:["空空的胃和一個小袋子（裝戰利品）","筆記本或手機（想記下新知）","水壺和帽子","相機或手帳"]},
+{q:"你比較能接受的行程長度？",o:["2 小時左右，吃飽剛好","2 到 3 小時，深度剛好","半天以上，走久一點沒關係","看氣氛，舒服就可以久一點"]},
+{q:"走完之後，你最希望自己的心情是？",o:["滿足又開心","長知識、有收穫","放鬆、被療癒","心裡安靜，有新的想法"]},
+{q:"這次是和誰一起去？",o:["朋友或家人，一起吃吃喝喝","想自己帶著好奇心去","親子或長輩，要輕鬆好走","想一個人沉澱"],tips:["適合熱鬧、可以邊走邊聊的行程，帶朋友或家人一起報名最有趣。","適合想深入了解的你，建議選有導覽員解說的場次，帶著問題去聽。","行程輕鬆好走最重要，出發前先看報名頁的時間與路程長度，選短一點的場次。","適合安靜獨處的你，可以選人數較少的平日或早場，慢慢走、慢慢想。"]}
+];
+var L="ABCD",ans=[],cur=0,app=document.getElementById("app");
+function strand(n){var h="";for(var i=0;i<7;i++){h+=(i?'<span class="link"></span>':"")+'<span class="rung'+(i<n?" on":i===n?" now":"")+'"></span>'}return '<div class="strand" role="img" aria-label="第 '+Math.min(n+1,7)+' 題，共 7 題">'+h+'</div>'}
+function helix(){var s='<svg class="helix" viewBox="0 0 150 120" aria-hidden="true">';for(var i=0;i<8;i++){var x=10+i*18,a=Math.sin(i*.9),y1=60+a*38,y2=60-a*38;s+='<line x1="'+x+'" y1="'+y1+'" x2="'+x+'" y2="'+y2+'" stroke="var(--line)" stroke-width="3"/><circle cx="'+x+'" cy="'+y1+'" r="6" fill="var(--c'+(i%4)+')"/><circle cx="'+x+'" cy="'+y2+'" r="6" fill="var(--c'+((i+2)%4)+')"/>'}return s+'</svg>'}
+function start(){ans=[];cur=0;app.innerHTML=helix()+'<h1>你是哪一種走讀 DNA？</h1><p>7 個小問題，測出你的走讀性格，再推薦最適合你的台灣走讀行程。</p><p class="mute">大約需要 1 分鐘。沒有標準答案，選最像你的就好。</p><button class="btn" id="go">開始測驗</button>';document.getElementById("go").onclick=ask;window.scrollTo(0,0)}
+function ask(){var Q=QS[cur];var h=strand(cur)+'<div class="q-no">第 '+(cur+1)+' 題／共 7 題</div><h2>'+Q.q+'</h2><div class="opts">';Q.o.forEach(function(t,i){h+='<button class="opt'+(ans[cur]===i?" picked":"")+'" data-i="'+i+'"><b>'+L[i]+'</b><span>'+t+'</span></button>'});h+='</div>'+(cur?'<button class="back" id="bk">← 上一題</button>':"");app.innerHTML=h;
+app.querySelectorAll(".opt").forEach(function(b){b.onclick=function(){ans[cur]=+b.dataset.i;if(cur<6){cur++;ask()}else result()}});
+var bk=document.getElementById("bk");if(bk)bk.onclick=function(){cur--;ask()};window.scrollTo(0,0)}
+function result(){var sc=[0,0,0,0];for(var i=0;i<6;i++)sc[ans[i]]++;var max=Math.max.apply(null,sc),tied=[];sc.forEach(function(v,i){if(v===max)tied.push(i)});
+var win=tied[0];if(tied.length>1){if(tied.indexOf(ans[5])>-1)win=ans[5];else if(tied.indexOf(ans[0])>-1)win=ans[0]}
+var T=TYPES[win],today=new Date().toISOString().slice(0,10);
+var h='<div class="hero" style="--t:'+T.c+'"><div class="tag">你的走讀 DNA 是</div><div class="em">'+T.em+'</div><h1>'+T.name+'</h1><div class="tag">'+T.tag+'</div></div>';
+h+='<p style="margin-top:18px">'+T.desc+'</p><div class="bars">';
+TYPES.forEach(function(t,i){h+='<div class="bar"><span>'+t.em+' '+t.name.replace(" DNA","")+'</span><div class="track"><div class="fill" style="width:'+(sc[i]/6*100)+'%;background:'+t.c+'"></div></div><span>'+sc[i]+'</span></div>'});
+h+='</div><h2 style="margin-bottom:12px">推薦你的台灣走讀行程</h2>';
+T.tours.forEach(function(r){var past=r.l<today;h+='<a class="tour" style="--t:'+T.c+'" href="https://booking.taiwanwalks.com/activities/'+r.u+'" target="_blank" rel="noopener"><strong>'+r.n+'</strong><small>'+r.d+(past?'（此檔已結束，可關注新場次）':'')+'</small><span class="go">查看行程與報名</span></a>'});
+h+='<div class="tip"><strong>同行小提醒</strong><br>'+QS[6].tips[ans[6]]+'</div><p class="mute">行程與場次以台灣走讀官網為準。</p><a class="btn" style="--t:'+T.c+'" href="https://www.taiwanwalks.com/%E8%B5%B0%E8%AE%80%E6%B4%BB%E5%8B%95" target="_blank" rel="noopener">前往台灣走讀官網</a><button class="btn ghost" id="again">重新測驗</button>';
+app.innerHTML=h;document.getElementById("again").onclick=start;window.scrollTo(0,0)}
+start();
+</script>
+</body>
+</html>
